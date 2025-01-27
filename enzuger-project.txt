@@ -1,0 +1,81 @@
+/enzuger-project
+├── /app
+│   ├── /controllers
+│   │   ├── AuthController.php
+│   │   ├── ProductController.php
+│   │   ├── OrderController.php
+│   │   ├── CustomerController.php
+│   │   ├── MarketingController.php
+│   │   ├── HRController.php
+│   │   ├── FinanceController.php
+│   │   └── DashboardController.php
+│   ├── /models
+│   │   ├── User.php
+│   │   ├── Product.php
+│   │   ├── Order.php
+│   │   ├── Customer.php
+│   │   ├── Coupon.php
+│   │   ├── Invoice.php
+│   │   ├── Attendance.php
+│   │   ├── Leave.php
+│   │   └── Review.php
+│   ├── /views
+│   │   ├── /auth
+│   │   │   ├── login.php
+│   │   │   ├── register.php
+│   │   │   └── forgot-password.php
+│   │   ├── /dashboard
+│   │   │   └── index.php
+│   │   ├── /products
+│   │   │   ├── add-product.php
+│   │   │   └── list-products.php
+│   │   ├── /orders
+│   │   │   ├── add-order.php
+│   │   │   └── list-orders.php
+│   │   └── /partials
+│   │       ├── header.php
+│   │       ├── footer.php
+│   │       └── sidebar.php
+│   ├── /helpers
+│   │   ├── Database.php
+│   │   ├── Auth.php
+│   │   ├── Validation.php
+│   │   ├── Utilities.php
+│   │   └── Mailer.php
+│   └── /routes
+│       ├── web.php
+│       ├── api.php
+│       └── admin.php
+├── /config
+│   ├── database.php
+│   ├── app.php
+│   └── email.php
+├── /public
+│   ├── /css
+│   │   ├── main.css
+│   │   └── admin.css
+│   ├── /js
+│   │   ├── app.js
+│   │   └── validation.js
+│   ├── /images
+│   │   ├── products/
+│   │   ├── banners/
+│   │   └── users/
+│   └── index.php
+├── /storage
+│   ├── /logs
+│   │   └── app.log
+│   ├── /uploads
+│   │   ├── products/
+│   │   ├── invoices/
+│   │   └── reviews/
+│   └── /cache
+│       └── temp/
+├── /tests
+│   ├── ControllersTest.php
+│   ├── ModelsTest.php
+│   └── HelpersTest.php
+├── .env
+├── composer.json
+├── README.md
+└── .htaccess

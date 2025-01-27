@@ -1,0 +1,147 @@
+Database Schema
+1. Users and Roles
+Users Table
+Table: users
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+email (VARCHAR, UNIQUE)
+password (VARCHAR)
+department (VARCHAR)
+job_role (VARCHAR)
+access_level (VARCHAR)
+created_at (TIMESTAMP)
+updated_at (TIMESTAMP)
+Roles Table
+Table: roles
+
+id (PK, INT, AUTO_INCREMENT)
+role_name (VARCHAR)
+permissions (TEXT) (JSON or comma-separated list of permissions)
+2. Products and Inventory
+Products Table
+Table: products
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+description (TEXT)
+price (DECIMAL)
+stock (INT)
+category (VARCHAR)
+created_at (TIMESTAMP)
+updated_at (TIMESTAMP)
+Inventory Table
+Table: inventory
+
+id (PK, INT, AUTO_INCREMENT)
+product_id (FK, INT, REFERENCES products(id))
+type (ENUM: 'Raw Material', 'Packaging Material', 'Finished Goods')
+quantity (INT)
+unit (VARCHAR)
+last_updated (TIMESTAMP)
+3. Customers and Orders
+Customers Table
+Table: customers
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+email (VARCHAR)
+phone (VARCHAR)
+address (TEXT)
+created_at (TIMESTAMP)
+Orders Table
+Table: orders
+
+id (PK, INT, AUTO_INCREMENT)
+customer_id (FK, INT, REFERENCES customers(id))
+order_date (TIMESTAMP)
+status (ENUM: 'Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled')
+total_amount (DECIMAL)
+Order Items Table
+Table: order_items
+
+id (PK, INT, AUTO_INCREMENT)
+order_id (FK, INT, REFERENCES orders(id))
+product_id (FK, INT, REFERENCES products(id))
+quantity (INT)
+price (DECIMAL)
+4. Marketing
+Coupons Table
+Table: coupons
+
+id (PK, INT, AUTO_INCREMENT)
+code (VARCHAR, UNIQUE)
+discount (DECIMAL)
+expiry_date (DATE)
+Referrals Table
+Table: referrals
+
+id (PK, INT, AUTO_INCREMENT)
+referrer_id (FK, INT, REFERENCES customers(id))
+referred_id (FK, INT, REFERENCES customers(id))
+reward (DECIMAL)
+5. HR and Employee Management
+Employees Table
+Table: employees
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+email (VARCHAR, UNIQUE)
+phone (VARCHAR)
+department (VARCHAR)
+job_role (VARCHAR)
+salary (DECIMAL)
+created_at (TIMESTAMP)
+Holidays Table
+Table: holidays
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+date (DATE)
+Leave Management Table
+Table: leaves
+
+id (PK, INT, AUTO_INCREMENT)
+employee_id (FK, INT, REFERENCES employees(id))
+start_date (DATE)
+end_date (DATE)
+status (ENUM: 'Pending', 'Approved', 'Rejected')
+Attendance Table
+Table: attendance
+
+id (PK, INT, AUTO_INCREMENT)
+employee_id (FK, INT, REFERENCES employees(id))
+date (DATE)
+status (ENUM: 'Present', 'Absent', 'On Leave')
+6. Shipping
+Table: shipping
+
+id (PK, INT, AUTO_INCREMENT)
+order_id (FK, INT, REFERENCES orders(id))
+tracking_number (VARCHAR)
+courier_service (VARCHAR)
+status (ENUM: 'Pending', 'Shipped', 'Delivered')
+updated_at (TIMESTAMP)
+7. Blogs and Reviews
+Blogs Table
+Table: blogs
+
+id (PK, INT, AUTO_INCREMENT)
+title (VARCHAR)
+content (TEXT)
+author (VARCHAR)
+created_at (TIMESTAMP)
+Reviews Table
+Table: reviews
+
+id (PK, INT, AUTO_INCREMENT)
+product_id (FK, INT, REFERENCES products(id))
+customer_id (FK, INT, REFERENCES customers(id))
+rating (INT)
+comment (TEXT)
+8. Settings
+Table: settings
+
+id (PK, INT, AUTO_INCREMENT)
+setting_name (VARCHAR)
+value (TEXT)

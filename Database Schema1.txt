@@ -1,0 +1,233 @@
+Database Schema
+1. Dashboard
+No specific table is required since this usually aggregates data from other tables.
+========================================
+
+2. Products
+---------------
+Table: products
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+description (TEXT)
+price (DECIMAL)
+stock (INT)
+created_at (TIMESTAMP)
+updated_at (TIMESTAMP)
+
+========================================
+
+3. Customers
+---------------
+Table: customers
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+email (VARCHAR)
+phone (VARCHAR)
+address (TEXT)
+created_at (TIMESTAMP)
+updated_at (TIMESTAMP)
+
+========================================
+
+4. Orders
+---------------
+Table: orders
+
+id (PK, INT, AUTO_INCREMENT)
+customer_id (FK, INT, REFERENCES customers(id))
+order_date (DATE)
+status (VARCHAR)
+total_amount (DECIMAL)
+created_at (TIMESTAMP)
+updated_at (TIMESTAMP)
+
+========================================
+
+5. Marketing
+
+---------------
+Coupons
+Table: coupons
+
+id (PK, INT, AUTO_INCREMENT)
+code (VARCHAR)
+discount (DECIMAL)
+expiry_date (DATE)
+created_at (TIMESTAMP)
+
+---------------
+Referrals
+Table: referrals
+
+id (PK, INT, AUTO_INCREMENT)
+referrer_id (FK, INT, REFERENCES customers(id))
+referred_id (FK, INT, REFERENCES customers(id))
+reward_amount (DECIMAL)
+created_at (TIMESTAMP)
+
+========================================
+
+6. Finance
+---------------
+Invoices
+Table: invoices
+
+id (PK, INT, AUTO_INCREMENT)
+customer_id (FK, INT, REFERENCES customers(id))
+amount (DECIMAL)
+due_date (DATE)
+status (VARCHAR)
+created_at (TIMESTAMP)
+
+---------------
+Subscribers
+Table: subscribers
+
+id (PK, INT, AUTO_INCREMENT)
+email (VARCHAR)
+subscription_date (DATE)
+---------------
+PO and WO
+Table: purchase_orders
+
+id (PK, INT, AUTO_INCREMENT)
+supplier_id (FK, INT, REFERENCES suppliers(id))
+order_date (DATE)
+total_amount (DECIMAL)
+---------------
+Table: work_orders
+
+id (PK, INT, AUTO_INCREMENT)
+task_description (TEXT)
+due_date (DATE)
+
+========================================
+
+7. Reviews
+---------------
+Table: reviews
+
+id (PK, INT, AUTO_INCREMENT)
+customer_id (FK, INT, REFERENCES customers(id))
+product_id (FK, INT, REFERENCES products(id))
+rating (INT)
+comment (TEXT)
+created_at (TIMESTAMP)
+
+========================================
+
+8. Inventory
+---------------
+Raw Material
+
+Table: raw_material
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+stock (INT)
+unit (VARCHAR)
+---------------
+Packaging Material
+Table: packaging_material
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+stock (INT)
+unit (VARCHAR)
+---------------
+Finished Goods
+Table: finished_goods
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+stock (INT)
+
+========================================
+
+9. Blogs
+---------------
+Table: blogs
+
+id (PK, INT, AUTO_INCREMENT)
+title (VARCHAR)
+content (TEXT)
+author (VARCHAR)
+created_at (TIMESTAMP)
+
+========================================
+
+10. Shipping
+---------------
+Table: shipments
+
+id (PK, INT, AUTO_INCREMENT)
+order_id (FK, INT, REFERENCES orders(id))
+tracking_number (VARCHAR)
+courier_name (VARCHAR)
+status (VARCHAR)
+
+========================================
+
+11. HR
+---------------
+Employee List
+Table: employees
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+email (VARCHAR)
+position (VARCHAR)
+salary (DECIMAL)
+---------------
+Holidays
+Table: holidays
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+date (DATE)
+---------------
+Leave Management
+Table: leaves
+
+id (PK, INT, AUTO_INCREMENT)
+employee_id (FK, INT, REFERENCES employees(id))
+start_date (DATE)
+end_date (DATE)
+
+---------------
+Payroll
+Table: payroll
+
+id (PK, INT, AUTO_INCREMENT)
+employee_id (FK, INT, REFERENCES employees(id))
+salary_date (DATE)
+amount (DECIMAL)
+
+========================================
+
+12. Sales
+---------------
+Offline Sales
+Table: offline_sales
+
+id (PK, INT, AUTO_INCREMENT)
+salesperson_id (FK, INT, REFERENCES employees(id))
+target (DECIMAL)
+
+---------------
+Online Sales
+Table: online_sales
+
+id (PK, INT, AUTO_INCREMENT)
+campaign_name (VARCHAR)
+
+========================================
+13. Settings
+---------------
+Table: users
+
+id (PK, INT, AUTO_INCREMENT)
+name (VARCHAR)
+role (VARCHAR)
